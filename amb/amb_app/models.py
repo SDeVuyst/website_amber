@@ -1,30 +1,75 @@
 from django.db import models
 from django import forms
 
-class Appointment(models.Model):
-    class Meta:
-        unique_together = ('date', 'time_slot')
+from datetime import datetime
 
-    TIMESLOT_LIST = (
-        (0, '09:00 - 09:30'),
-        (1, '10:00 - 10:30'),
-        (2, '11:00 - 11:30'),
-        (3, '12:00 - 12:30'),
-        (4, '13:00 - 13:30'),
-        (5, '14:00 - 14:30'),
-        (6, '15:00 - 15:30'),
-        (7, '16:00 - 16:30'),
-        (8, '17:00 - 17:30'),
-    )
+class Patient(models.Model):
 
-    date = models.DateField()
-    time_slot = models.IntegerField(choices=TIMESLOT_LIST)
-    patient_first_name = models.CharField(max_length=30)
-    patient_last_name  = models.CharField(max_length=30)
+    first_name = models.CharField(max_length=30)
+    last_name  = models.CharField(max_length=30)
 
     def __str__(self):
-        return f'{self.patient_first_name} {self.patient_last_name} heeft een afspraak om {self.time} op {self.date}'
+        return f'{self.first_name} {self.last_name}'
 
-    @property
-    def time(self):
-        return self.TIMESLOT_LIST[self.time_slot][1]
+
+# TODO zorg dat er voor elke dag de komende x dagen een model bestaat 
+class Day(models.Model):
+    date = models.DateField()
+    
+
+    def __str__(self):
+        return str(self.date.strftime("%d/%m/%Y"))
+
+    # Maak default timeslots voor elke nieuwe dag
+    def save(self, *args, **kwargs):
+
+        super(Day, self).save(*args, **kwargs)
+
+        TIMETABLE = [
+                    ('10:00:00', '11:00:00'),
+                    ('11:30:00', '12:30:00'),
+                    ('14:00:00', '15:00:00'),
+                    ('15:00:00', '18:00:00'),
+                    ('18:00:00', '19:00:00'),
+                ]
+
+        for times in TIMETABLE:
+
+            slot = TimeSlot(start=times[0], end=times[1], available=True, patient=None, day=self)
+            slot.save()
+
+        
+
+
+
+class TimeSlot(models.Model):
+
+    start = models.TimeField()
+    end = models.TimeField()
+    available = models.BooleanField(default=True)
+    patient = models.ForeignKey(Patient, on_delete=models.PROTECT, verbose_name='Patient', null=True, blank=True)
+    day = models.ForeignKey(Day, on_delete=models.CASCADE, verbose_name='Day')
+
+    class Meta:
+        unique_together = ('day', 'start', 'end')
+        ordering = ['start']
+
+
+    def save(self, *args, **kwargs):
+        # iemand heeft afspraak, deze timeslot is niet meer beschikbaar
+        if (self.patient):
+            self.available = False
+
+        super(TimeSlot, self).save(*args, **kwargs)
+
+    def __str__(self):
+
+        if self.available:
+            return f'{self.day}: {self.start.strftime("%H:%M")} - {self.end.strftime("%H:%M")} is beschikbaar'
+        else:
+            if self.patient:
+                return f'{self.day}: {self.patient} heeft een afspraak om {self.start.strftime("%H:%M")}'
+            else:
+                return f'{self.day}: {self.start.strftime("%H:%M")} - {self.end.strftime("%H:%M")} is gesloten'
+
+
