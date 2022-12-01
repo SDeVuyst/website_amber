@@ -5,8 +5,11 @@ from django.contrib import messages
 
 
 class DayAdmin(admin.ModelAdmin):
-    ordering=['date']
+    ordering = ['date']
     actions = ['closeDay', 'openDay']
+
+    # TODO fix date search in different format
+    search_fields = ('date', )
 
     @admin.action(description='Sluit elk tijdslot van de geselecteerde dagen')
     def closeDay(self, request, queryset):
@@ -48,6 +51,8 @@ class DayAdmin(admin.ModelAdmin):
 class TimeSlotAdmin(admin.ModelAdmin):
     ordering=['day', 'start']
     actions = ['closeTimeSlot', 'openTimeSlot']
+    # TODO fix date search in different format
+    search_fields = ('start', 'end', 'day__date', 'patient__first_name', 'patient__last_name')
 
     @admin.action(description='Sluit elke geselecteerde tijdslot')
     def closeTimeSlot(self, request, queryset):

@@ -9,9 +9,15 @@
     </head>
   <body>
     <div>
-        <h3>TODO</h3>
+        <!-- TODO maak dit form,  die update wanneer een dag geselecteerd wordt, keuzes zijn dagen (eventueel in timetable vorm) -->
+        {% if daysSet %}
+            {% for day in daysSet%}
+                <h1>{{ day }}</h1>
+            {% endfor %}
+        {% else %}
+            <h1>Er zijn momenteel geen beschikbare dagen.</h1>
+        {% endif %}
     </div>
     
-    <h1>Hello, {{ user }}!</h1>
   </body>
 </html>

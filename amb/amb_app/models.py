@@ -14,7 +14,7 @@ class Patient(models.Model):
 
 # TODO zorg dat er voor elke dag de komende x dagen een model bestaat 
 class Day(models.Model):
-    date = models.DateField()
+    date = models.DateField(unique=True)
     
 
     def __str__(self):
@@ -44,15 +44,21 @@ class Day(models.Model):
 
 class TimeSlot(models.Model):
 
-    start = models.TimeField()
-    end = models.TimeField()
+    start = models.TimeField(null=True, blank=True)
+    end = models.TimeField(null=True, blank=True)
     available = models.BooleanField(default=True)
     patient = models.ForeignKey(Patient, on_delete=models.PROTECT, verbose_name='Patient', null=True, blank=True)
     day = models.ForeignKey(Day, on_delete=models.CASCADE, verbose_name='Day')
 
     class Meta:
-        unique_together = ('day', 'start', 'end')
-        ordering = ['start']
+        ordering = ['day', 'start', 'end']
+
+        constraints = [
+            models.UniqueConstraint(
+                fields=['day', 'start', 'end'],
+                name='One timeslot with same start and end value per day'
+            )
+        ]
 
 
     def save(self, *args, **kwargs):
@@ -61,6 +67,7 @@ class TimeSlot(models.Model):
             self.available = False
 
         super(TimeSlot, self).save(*args, **kwargs)
+
 
     def __str__(self):
 
