@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.serializers import serialize
 from django.http import HttpResponse
 from django.template import loader
 
@@ -24,3 +25,8 @@ def appointment(request):
     return render(request, 'appointment.html', {
         'daysSet': daysSet
     })
+
+def getTimeSlots(request):
+    queryset = TimeSlot.objects.all()
+    data = serialize("json", [queryset], fields=('title', 'content'))
+    return HttpResponse(data, content_type="amb_app/json")

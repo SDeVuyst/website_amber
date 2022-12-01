@@ -12,12 +12,19 @@
   <body>
     <div>
         <form>
+            {% csrf_token %}
             <!-- TODO maak dit form,  die update wanneer een dag geselecteerd wordt, keuzes zijn dagen (eventueel in timetable vorm) -->
             {% if daysSet %}
+                <label>Select a date</label>
                 <input type="text" id="datepicker">
+                <br><br>
+                <label>Select time slot</label>
+                <select name="timeslots" id="timeslots" disabled></select>
             {% else %}
                 <h1>Er zijn momenteel geen beschikbare dagen.</h1>
             {% endif %}
+            
+                
         </form>
     </div>
 
@@ -25,6 +32,7 @@
     <script>
         $(document).ready(function() {
             $(function() {
+                // Make right dates selectable
                 var daysSet = "{{daysSet}}";
                 
                 // clean up date
@@ -69,6 +77,12 @@
                             return [false, 'bad_date', 'This date is NOT selectable'];
                         }
                     }
+                });
+                
+                // Date has been selected, show available timeslots
+                $("#datepicker").on("change",function(){
+                    var selected = $(this).val();
+                    alert(selected);
                 });
             });
         })
