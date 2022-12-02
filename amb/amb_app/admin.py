@@ -1,20 +1,20 @@
 from django.contrib import admin
 from .models import Patient, TimeSlot, Day
 from django.utils.translation import ngettext
+from django.utils.html import mark_safe
 from django.contrib import messages
 
 
 class DayAdmin(admin.ModelAdmin):
     ordering = ['date']
     actions = ['closeDay', 'openDay']
-
     # TODO fix date search in different format
     search_fields = ('date', )
 
     @admin.action(description='Sluit elk tijdslot van de geselecteerde dagen')
     def closeDay(self, request, queryset):
 
-        timeslotcount = 0
+        timeslotcount = 0   
         for Day in queryset:
             timeslots = TimeSlot.objects.filter(day=Day)
             timeslots.update(available=False)
@@ -45,7 +45,6 @@ class DayAdmin(admin.ModelAdmin):
                     f'{daycount} days ({timeslotcount} timeslots) were successfully opened.',
                     daycount
                 ), messages.SUCCESS)
-
 
 
 class TimeSlotAdmin(admin.ModelAdmin):

@@ -3,6 +3,7 @@ from django import forms
 
 from datetime import datetime
 
+
 class Patient(models.Model):
 
     first_name = models.CharField(max_length=30)
@@ -15,7 +16,6 @@ class Patient(models.Model):
 # TODO zorg dat er voor elke dag de komende x dagen een model bestaat 
 class Day(models.Model):
     date = models.DateField(unique=True)
-    
 
     def __str__(self):
         return str(self.date.strftime("%d/%m/%Y"))
@@ -37,6 +37,10 @@ class Day(models.Model):
 
             slot = TimeSlot(start=times[0], end=times[1], available=True, patient=None, day=self)
             slot.save()
+    
+    def getTimeSlots(self, *args, **kwargs):
+        timeslots = TimeSlot.objects.filter(day=self)
+        return timeslots
 
         
 
@@ -78,5 +82,3 @@ class TimeSlot(models.Model):
                 return f'{self.day}: {self.patient} heeft een afspraak om {self.start.strftime("%H:%M")}'
             else:
                 return f'{self.day}: {self.start.strftime("%H:%M")} - {self.end.strftime("%H:%M")} is gesloten'
-
-
