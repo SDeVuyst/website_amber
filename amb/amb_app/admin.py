@@ -92,4 +92,15 @@ class TimeSlotAdmin(admin.ModelAdmin):
 @admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):
     ordering=['first_name', 'last_name']
+    list_display = ('full_name', 'view_timeslots')
     actions = []
+
+    #TODO nu is bij naam, maar moet met ojject zelf zijn
+    def view_timeslots(self, obj):
+        url = (f'/admin/amb_app/timeslot/?q={obj.first_name}+{obj.last_name}')
+        return format_html('<a href="{}">See Timeslots</a>', url)
+    view_timeslots.short_description = "Time Slots"
+
+    def full_name(self, obj):
+        return '{} {}'.format(obj.first_name, obj.last_name)
+    full_name.short_description = 'Naam'
