@@ -11,15 +11,31 @@
     </head>
   <body>
     <div>
-        <form>
+        <form id="appointment_form" action="/appointment" method="POST">
             {% csrf_token %}
-            <!-- TODO maak dit form,  die update wanneer een dag geselecteerd wordt, keuzes zijn dagen (eventueel in timetable vorm) -->
+            
             {% if daysSet %}
                 <label>Select a date</label>
-                <input type="text" id="datepicker">
+                <input required type="text" id="datepicker" name="date">
+
                 <br><br>
+
                 <label>Select time slot</label>
-                <select name="timeslots" id="timeslots" disabled></select>
+                <select required name="timeslot" id="timeslots" disabled></select>
+
+                <br><br>
+
+                <label>Voornaam</label>
+                <input required type="text" id="first_name" name="first_name" maxlength="30">
+
+                <br><br>
+
+                <label>Achternaam</label>
+                <input required type="text" id="last_name" name="last_name" maxlength="30">
+
+                <br><br>
+
+                <input type="submit" value="OK">
             {% else %}
                 <h1>Er zijn momenteel geen beschikbare dagen.</h1>
             {% endif %}
@@ -48,10 +64,8 @@
 
 
                 $('#datepicker').datepicker({
-                    // these aren't necessary, but if you happen to know them, why not
-        
-                    // minDate: new Date(2009, 12-1, 1),
-                    // maxDate: new Date(2010, 9-1, 28),
+
+                    minDate: new Date(),
         
                     // called for every date before it is displayed
                     beforeShowDay: function(date) {
@@ -85,15 +99,21 @@
                     // remove previously loaded timeslots
                     $("#timeslots").find('option').remove()
 
+                    // Default choice
+                    $("#timeslots").append(`<option value="" selected disabled>
+                                       Kies een timeslot
+                                  </option>`);
+
                     $.getJSON(`/timeslots/${selected}`,
                         function(data){
                             // data heeft alle beschikbare timeslots van de gekozen dag
                             // enable de dropdown en populate
                             $("#timeslots").prop('disabled', false);
                             for (var i=0; i<data.length; i++) {
-                                $("#timeslots").append(`<option value="${data[i].pk}">
-                                       ${data[i].fields.start} - ${data[i].fields.end}
-                                  </option>`);
+                                $("#timeslots").append(
+                                    `<option value="${data[i].pk}">
+                                        ${data[i].fields.start} - ${data[i].fields.end}
+                                    </option>`);
                             }
                     });  
                 });
