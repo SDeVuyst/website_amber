@@ -1,15 +1,26 @@
 from django.contrib import admin
 from .models import Patient, TimeSlot, Day
 from django.utils.translation import ngettext
-from django.utils.html import mark_safe
+from django.utils.html import mark_safe, format_html
 from django.contrib import messages
+from django import forms
 
 
+@admin.register(Day)
 class DayAdmin(admin.ModelAdmin):
     ordering = ['date']
     actions = ['closeDay', 'openDay']
     # TODO fix date search in different format
     search_fields = ('date', )
+    #2022-12-01 --> how to search
+    list_display = ('date', 'view_timeslots')
+    date_hierarchy = 'date'
+    
+    def view_timeslots(self, obj):
+        url = (f'/admin/amb_app/timeslot/?q={obj.date}')
+        return format_html('<a href="{}">See Timeslots</a>', url)
+    view_timeslots.short_description = "Time Slots"
+
 
     @admin.action(description='Sluit elk tijdslot van de geselecteerde dagen')
     def closeDay(self, request, queryset):
@@ -46,12 +57,13 @@ class DayAdmin(admin.ModelAdmin):
                     daycount
                 ), messages.SUCCESS)
 
-
+@admin.register(TimeSlot)
 class TimeSlotAdmin(admin.ModelAdmin):
     ordering=['day', 'start']
     actions = ['closeTimeSlot', 'openTimeSlot']
     # TODO fix date search in different format
-    search_fields = ('start', 'end', 'day__date', 'patient__first_name', 'patient__last_name')
+    search_fields = ['start', 'end', 'day__date', 'patient__first_name', 'patient__last_name']
+    date_hierarchy = 'day__date'
 
     @admin.action(description='Sluit elke geselecteerde tijdslot')
     def closeTimeSlot(self, request, queryset):
@@ -77,13 +89,7 @@ class TimeSlotAdmin(admin.ModelAdmin):
                 ), messages.SUCCESS)
 
 
-
+@admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):
     ordering=['first_name', 'last_name']
     actions = []
-
-
-admin.site.register(Day, DayAdmin)
-admin.site.register(Patient, PatientAdmin)
-admin.site.register(TimeSlot, TimeSlotAdmin)
-

@@ -1,6 +1,6 @@
 from django.db import models
 from django import forms
-
+from django.utils.html import format_html
 from datetime import datetime
 
 
@@ -38,13 +38,7 @@ class Day(models.Model):
             slot = TimeSlot(start=times[0], end=times[1], available=True, patient=None, day=self)
             slot.save()
     
-    def getTimeSlots(self, *args, **kwargs):
-        timeslots = TimeSlot.objects.filter(day=self)
-        return timeslots
-
-        
-
-
+    
 
 class TimeSlot(models.Model):
 
