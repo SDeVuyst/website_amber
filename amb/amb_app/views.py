@@ -12,6 +12,9 @@ def index(request):
     context = { 'user': 'test' } 
     return render(request, 'index.html', context)
 
+def error(request):
+    return render(request, 'error.html')
+
 def appointment(request):
     # Nieuwe afspraak ingediend
     if request.method == 'POST':
@@ -38,9 +41,12 @@ def appointment(request):
             TimeslotObject.patient=PatientObject
             TimeslotObject.save()
         
-        print("Succes!")
-        return redirect('index')
+            print("Succes!")
+            return redirect('index')
+        else:
+            return redirect('error')
 
+    # REQUEST METHOD == GET
     # User wil nieuwe afspraak maken
     # all days where there is still an open timeslot
     daysSet = set()
@@ -50,6 +56,7 @@ def appointment(request):
     return render(request, 'appointment.html', {
         'daysSet': daysSet
     })
+
 
 # Geeft de available timeslots terug voor een gegeven dag
 def getTimeSlots(request, date):
