@@ -65,6 +65,12 @@ class TimeSlotAdmin(admin.ModelAdmin):
     search_fields = ['start', 'end', 'day__date', 'patient__first_name', 'patient__last_name']
     date_hierarchy = 'day__date'
 
+    def isAvailable(self, obj):
+        return obj.available
+    isAvailable.boolean = True
+    isAvailable.short_description = 'available'
+
+
     @admin.action(description='Sluit elke geselecteerde tijdslot')
     def closeTimeSlot(self, request, queryset):
         queryset.update(available=False)
@@ -93,9 +99,9 @@ class TimeSlotAdmin(admin.ModelAdmin):
 class PatientAdmin(admin.ModelAdmin):
     ordering=['first_name', 'last_name']
     list_display = ('full_name', 'view_timeslots')
+    search_fields = ['first_name', 'last_name']
     actions = []
 
-    #TODO nu is bij naam, maar moet met ojject zelf zijn
     def view_timeslots(self, obj):
         url = (f'/admin/amb_app/timeslot/?q={obj.first_name}+{obj.last_name}')
         return format_html('<a href="{}">See Timeslots</a>', url)
