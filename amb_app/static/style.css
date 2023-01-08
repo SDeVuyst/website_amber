@@ -1,0 +1,816 @@
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+/* inspired by https://codepen.io/designbyremedy/pen/RwGwvy */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&family=Merriweather:wght@300;400;700&display=swap');
+
+/* Override UGG site */
+#main {width: 100%; padding:0;}
+.content-asset p {margin:0 auto;}
+.breadcrumb {display:none;}
+
+/* Helpers */
+/**************************/
+.margin-top-10 {padding-top:10px;}
+.margin-bot-10 {padding-bottom:10px;}
+
+/* Typography */
+/**************************/
+#parallax-hoofd h1 {
+  font-family:'Helvetica';
+  font-size:24px; 
+  font-weight:400; 
+  text-transform: uppercase; 
+  color:black; 
+  padding:0; 
+  margin:0;
+}
+
+#parallax-hoofd h2 {
+  font-family:'Helvetica';
+  font-size:50px; 
+  letter-spacing:10px; 
+  text-align:center; 
+  color: white; 
+  font-weight:400; 
+  z-index:10; 
+  opacity:.9;
+}
+
+#parallax-hoofd h3 {
+  font-family:'Helvetica';
+  font-size:14px; 
+  line-height:0; 
+  font-weight:400; 
+  letter-spacing:8px; 
+  text-transform: uppercase; 
+  color:black;
+
+}
+
+#parallax-hoofd p, #parallax-hoofd ul li {
+  font-family: 'IBM Plex Sans', sans-serif; 
+  font-size:20px; 
+  font-weight: 300;
+}
+
+.first-character {
+  font-family:'MerriWeather', sans-serif !important; 
+  font-weight:700; 
+  float: left; 
+  font-size: 84px; 
+  line-height: 64px; 
+  padding-top: 4px; 
+  padding-right: 8px; 
+  padding-left: 3px;
+}
+
+.om {
+  color: #7f5a42;
+}
+
+.ww {
+  color: #588371
+}
+
+.ab {
+  color: #dcdcdc;
+}
+
+.mf {
+  color: #5c683c;
+}
+
+.tt {
+  position: relative;
+  top: 10px;
+  color: rgb(162, 87, 17);
+  float: none !important;
+  padding-right: 0 !important;
+}
+
+/* text-shadow: 0 0 1px black */
+/* Section - Title */
+/**************************/
+#parallax-hoofd .title {
+  background: white; 
+  padding: 60px; 
+  margin:0 auto; 
+  text-align:center;
+}
+
+#parallax-hoofd .title h1 {
+  font-size:35px; 
+  letter-spacing:8px;
+}
+
+/* Section - Block */
+/**************************/
+#parallax-hoofd .block {
+  background: white; 
+  padding: 60px; 
+  width:820px; 
+  margin:0 auto; 
+  text-align: justify;
+}
+
+#parallax-hoofd .block-gray {
+  background: #f2f2f2;
+  padding: 60px;
+}
+
+#parallax-hoofd .section-overlay-mask {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background-color: black; opacity: 0.7;}
+
+/* Section - Parallax */
+/**************************/
+#parallax-hoofd div[class^='parallax-'] {
+  text-align: center; 
+  padding-top: 200px; 
+  padding-bottom: 250px; 
+  overflow: hidden; 
+  position: relative; 
+  width: 100%; 
+  background-attachment: scroll; 
+  background-size: cover; 
+  -moz-background-size: cover; 
+  -webkit-background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: top center;
+}
+
+#parallax-hoofd .parallax-one {
+  padding-top: 250px !important;
+  padding-bottom: 300px !important; 
+  background-image: url('/static/images/index.jpeg'); 
+}
+
+#parallax-hoofd .parallax-two {
+  background-image: url('/static/images/overmij.jpeg')
+}
+
+#parallax-hoofd .parallax-three {
+  width: 100%; background-image: url('/static/images/werkwijze.jpeg')
+}
+
+#parallax-hoofd .parallax-four {
+  width: 100%; background-image: url('/static/images/aanbod.jpeg')
+}
+
+#parallax-hoofd .parallax-five {
+  width: 100%; background-image: url('/static/images/online.jpeg')
+}
+
+/* Extras */
+/**************************/
+#parallax-hoofd .line-break {
+  border-bottom: 1px solid black; 
+  width: 150px; 
+  margin:0 auto;
+}
+
+/* Media Queries */
+/**************************/
+@media screen and (max-width: 767px) {
+  #parallax-hoofd .block {
+    padding: 30px 15px;
+    width:290px;
+    text-align: justify !important; 
+    align-items: center;
+  }
+
+  #desktopheader { 
+    display: none; 
+  } 
+
+  #afspraakdiv {
+    width: 80%;
+    margin: 10% auto;
+  }
+
+  #header_afspraak {
+    font-size: 25px !important;
+  }
+
+  .ui-datepicker {
+    font-size: 18px !important;
+  }
+
+  .tussentitel {
+    font-size: 22px !important;
+    line-height: 34px !important; 
+    text-align: center !important;
+  }
+
+  .tt {
+    line-height: 40px !important; 
+    font-size: 64px;
+  }
+
+  #main-text {
+    font-size: 30px !important; 
+    padding-bottom:3%;
+  }
+
+  h2 {
+    font-size: 35px !important;
+  }
+
+  #portret {
+    float: none !important; 
+    display: block; 
+    margin: 0 auto !important; 
+    padding: 0 0 !important; 
+    object-fit: cover; 
+    text-align: center;
+  }
+  
+  #parallax-hoofd p, #parallax-hoofd ul li {
+    font-size: 20px !important;
+    text-justify: distribute; 
+    -webkit-hyphens: auto; 
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+  }
+}
+
+@media screen and (max-width: 767px) and (min-width: 959px) {
+  #parallax-hoofd .block {
+    padding: 30px; 
+    width:420px;
+  }
+
+  #parallax-hoofd h2 {
+    font-size:25px; 
+    padding-bottom: 20px;
+  }
+
+  #parallax-hoofd .block {
+    padding: 30px;
+  }
+
+  #parallax-hoofd .parallax-one, #parallax-hoofd .parallax-two, #parallax-hoofd .parallax-three {
+    padding-top:100px; 
+    padding-bottom:100px;
+  }
+
+  #desktopheader { 
+    display: none; 
+  }
+
+  #afspraakdiv {
+    width: 60%;
+  }
+
+  .ui-datepicker {
+    font-size: 16px !important;
+  }
+
+  #afspraakdiv {
+    margin: 10% auto;
+  }
+}
+
+@media screen and (max-width: 959px) and (min-width: 768px) {
+  #parallax-hoofd .block {
+    padding: 40px; 
+    width:620px;
+  }
+
+  #parallax-hoofd .block {
+    padding: 40px; width:620px;
+  }
+
+  #desktopheader { 
+    display: none; 
+  }
+
+  #afspraakdiv {
+    width: 60%;
+  }
+
+  .ui-datepicker {
+    font-size: 18px !important;
+  }
+
+  #afspraakdiv {
+    margin: 10% auto;
+  }
+}
+
+
+@media screen and (max-width: 1102px) and (min-width: 959px) {
+  #parallax-hoofd .block {
+    padding: 40px; 
+    width:620px;
+  }
+
+  #mobileheader { 
+    display: none;
+  }
+
+  #afspraakdiv {
+    width: 55%;
+  }
+
+  .ui-datepicker {
+    font-size: 20px !important;
+  }
+
+  #afspraakdiv {
+    margin: 5% auto;
+  }
+}
+
+@media screen and (min-width: 1102px) {
+  #mobileheader { 
+    display: none;
+  }
+
+  #afspraakdiv {
+    width: 50%;
+  }
+
+  .ui-datepicker {
+    font-size: 26px !important;
+  }
+
+  #afspraakdiv {
+    margin: 2% auto;
+  }
+}
+/* ----------------------------------- */
+.ghost_button {
+  font-family: 'MerriWeather', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: white;
+  padding: 20px;
+  border: 1px solid white;
+  text-decoration: none;
+  transition:         0.10s ease-in;
+  -o-transition:      0.10s ease-in;
+  -ms-transition:     0.10s ease-in;
+  -moz-transition:    0.10s ease-in;
+  -webkit-transition: 0.10s ease-in;
+}  
+
+.ghost_button:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.credits {
+  text-align: center;
+  font-family:'Helvetica', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.contact {
+  text-align: center;
+  font-family: 'MerriWeather', sans-serif !important;
+  font-weight: 400;
+  color: white;
+  text-decoration: none !important;
+}
+
+.contact a {
+  color: white;
+  text-decoration: underline;
+}
+
+/* STYLING THE HEADER */
+.desktopnav {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox */
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  z-index: 500;
+}
+
+header ul {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+header ul li {
+  list-style: none;
+}
+
+header ul li a {
+  text-decoration: none;
+  color: white;
+  letter-spacing: 2px;
+  font-weight: 500px;
+  padding: 15px 15px;
+  -webkit-transition: all 0.4s ease-out;
+  -moz-transition: all 0.4s ease-out;
+  -o-transition: all 0.4s ease-out;
+  transition: all 0.4s ease-out;
+}
+
+.sticky {
+  position: fixed;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 0;
+  background: rgb(15, 27, 29);
+  opacity: 0.85;
+  transition: all 0.6s ease-in-out;
+  -webkit-transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;
+}
+
+.afspraakheader {
+  position: sticky;
+  background: rgb(15, 27, 29);
+  opacity: 0.85;
+  margin: 0;
+  padding: 0;
+  top: 0;
+}
+
+.sticky ul li a {
+  color: rgb(255, 245, 245);
+}
+
+#desktopheader:not(.sticky) > #desktopnav, .right {
+  width: 100%;
+  right: 0;
+  padding: 1%;
+  justify-content: right !important;
+  align-items: right !important;
+  text-align: right !important;
+}
+
+.right {
+  padding: 0 !important;
+  padding-right: 1% !important;
+}
+
+
+/* Mobile header */
+#mobileheader {
+  width: 100%;
+  position: fixed;
+  z-index: 120;
+  text-align: right;
+}
+
+/* Hamburger */
+.hamburger1 {
+  height: 45px;
+  padding: 2%;
+  display: -ms-grid;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  z-index: 120;
+  justify-content: right;
+  align-items: right;
+}
+
+.hamburger1 div {
+  background-color: rgb(15, 27, 29);;
+  position: relative;
+  width: 40px;
+  height: 5px;
+  margin-top: 7px;
+}
+
+#toggle1 {
+ display: none;
+}
+
+#toggle1:checked + .hamburger1 {  
+  background-color: rgb(15, 27, 29);
+}
+
+#toggle1:not(:checked) + .hamburger1 {
+  height: 0;
+  transition: all .05s linear .25s;
+  -webkit-transition: all .05s linear .25s;
+}
+
+#toggle1:checked + .hamburger1 .top {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  margin-top: 22.5px;
+  background-color: white;
+  transition: all .25s ease-out;
+  -webkit-transition: all .25s ease-out;
+}
+
+#toggle1:checked + .hamburger1 .meat {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  margin-top: -5px;
+  background-color: white;
+  transition: all .25s ease-out;
+  -webkit-transition: all .25s ease-out;
+}
+
+#toggle1:checked + .hamburger1 .bottom {
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  background-color: white;
+  transition: all .25s ease-out;
+  -webkit-transition: all .25s ease-out;
+}
+
+#toggle1:checked ~ .menu1 {
+ height: 340px;
+}
+
+.navigation {
+  width: 100%;
+}
+
+.menu1 a {
+  text-decoration: none;
+  color: white;
+  letter-spacing: 2px;
+  font-weight: 500px;
+  padding: 15px 15px;
+}
+
+/* Menu */
+.menu1 {
+  width: 100%;
+  background-color: rgb(15, 27, 29);
+  margin: 0;
+  display: -ms-grid;
+  display: grid;
+  padding: 0;
+  list-style: none;
+  clear: both;
+  width: auto;
+  text-align: center;
+  height: 0px;
+  overflow: hidden;
+  transition: height .25s linear;
+  -webkit-transition: height .25s linear;
+  z-index: 120;
+  
+}
+
+.menu1 a:first-child {
+ margin-top: 15px;
+}
+
+.menu1 a:last-child {
+ margin-bottom: 15px;
+}
+
+.link1 {
+ margin: 0;
+}
+
+
+/* navbar hover effect*/
+.sliding-middle-out {
+  font-family: 'MerriWeather', sans-serif !important;
+  font-weight: 400;
+	display: inline-block;
+	position: relative;
+  font-size: 20px;
+}
+
+.sliding-middle-out:after {
+	content: '';
+	display: block;
+	margin: auto;
+	height: 2px;
+	width: 0px;
+	background: transparent;
+	transition: width .3s ease, white .5s ease;
+}
+
+.sliding-middle-out:hover:after {
+	width: 100%;
+	background: white;
+}
+
+.viewing {
+  background-color: #44443c;
+  border-radius: 2px;
+  -webkit-transition: all 0.4s ease-in;
+  -moz-transition: all 0.4s ease-in;
+  -o-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
+}
+
+footer {
+  position: static;
+  background-color: rgb(51,51,51);
+  padding-top: 17px;
+  padding-bottom: 8px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.tussentitel {
+  font-family: 'MerriWeather', sans-serif !important;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 24px;
+}
+
+.hyperlink {
+  text-decoration: underline;
+  color: #5c683c;
+}
+
+#afspraakbody {
+  background-image: url('/static/images/index.jpeg');
+  background-attachment: fixed; background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+}
+
+.submit_button {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+#afspraakdiv {
+  padding: 2px 10px 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+input[type=text], input[type=submit], input[type=email], textarea, select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 6px 0;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  color: white;
+  background-color: rgba(0,0,0, 0.6 );
+  border: 2px solid black;
+}
+
+textarea {
+  height: auto;
+}
+
+label {
+  font-size: 20px;
+}
+
+input.eerste_gesprek {
+  transform: scale(1.5);
+}
+
+.opsomming li {
+  font-size: 20px;
+}
+
+/* Blockquote https://codepen.io/jimmycow/pen/LmjVaz*/
+.blockquote {
+  padding: 40px 60px 20px;
+  margin: 0;
+  position: relative;
+}
+
+.blockquote p {
+  font-family:'MerriWeather', sans-serif !important;
+  font-size: 35px;
+  font-weight: 400 !important ;
+  text-align: center;
+}
+
+.blockquote:before {
+  position: absolute;
+  font-weight: 400 !important;
+  top: 0;
+
+  content:"\201D";
+  font-size: 300px;
+  color: rgba(101, 126, 88, 0.25);
+}
+
+.blockquote::after {
+  content: "";
+  top: 20px;
+  left: 50%;
+  margin-left: -100px;
+  position: absolute;
+  border-bottom: 3px solid #44443c;;
+  height: 3px;
+  width: 200px;
+}
+
+
+/* Change datepicker layout */
+
+.ui-datepicker {
+  /* position: relative; */
+  z-index: 1000 !important;
+}
+
+#datepicker {
+  z-index: 1000;
+}
+
+.ui-widget-header {
+  background: #2d3522; 
+  border: 1px solid #2d3522;
+}
+
+.bad_date {
+  text-decoration: line-through;
+}
+
+.bad_date .ui-state-default {
+  color: black !important;
+  font-weight: normal;
+}
+
+.good_date {
+  background-color: green !important;
+}
+
+.good_date .ui-state-default {
+  color: green !important;
+  background-color: rgba(0, 128, 0, 0.7) !important;
+}
+
+.ui-state-disabled {
+  opacity: 0.7 !important;
+}
+
+.center {
+  text-align: center;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+}
+
+.error-container{
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  z-index: 200;
+}
+
+#fullwrapper {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column; 
+  justify-content:space-between;
+}
+
+option {
+  font-family:'MerriWeather', sans-serif !important;
+  font-size: 17px;
+  font-weight: 400 !important ;
+  text-align: center;
+}
+
+#portret {
+  float: right;
+  height: 45vh;
+  margin-left: 3%;
+  margin-top: 10px;
+}

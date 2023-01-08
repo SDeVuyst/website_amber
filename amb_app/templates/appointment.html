@@ -1,0 +1,214 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{% static 'images/favicon_light.ico' %}" id="light-scheme-icon">
+    <link rel="icon" href="{% static 'images/favicon_dark.ico' %}" id="dark-scheme-icon">
+    <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css'rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    
+    <title>Amber De Vuyst</title>
+    </head>
+  <body id="afspraakbody">    
+    <div id="fullwrapper">
+        <header class="afspraakheader right">
+            <nav id="desktopnav" class="desktopnav">
+            <ul class="menu">
+                <li><a id="home" href="/" class="sliding-middle-out">Home</a></li>
+            </ul>
+            </nav>
+        </header>
+        
+        <div id="afspraakdiv">
+            {% if messages %}
+                {% for message in messages %}
+                <h1 class="center">{{ message }}</h1>
+                {% endfor %}
+            </ul>
+            {% else %}
+            {% if    daysSet %}
+            <h2 id="header_afspraak">Boek een online afspraak</h2>
+            <form id="appointment_form" action="/appointment" method="POST">
+                {% csrf_token %}
+                
+                
+                <label>Selecteer datum</label>
+                <input required type="text" id="datepicker" name="date" placeholder="DD/MM/YYYY" onfocus="blur()" onkeydown="return false">
+
+                <br><br>
+
+                <label>Selecteer een tijdslot</label>
+                <select required name="timeslot" id="timeslots" disabled>
+                    <option selected disabled>Kies eerst een datum</option>
+                </select>
+
+                <br><br>
+
+                <label>Voornaam</label>
+                <input required type="text" id="first_name" name="first_name" maxlength="30">
+
+                <br><br>
+
+                <label>Achternaam</label>
+                <input required type="text" id="last_name" name="last_name" maxlength="30">
+
+                <br><br>
+
+                <label>Email</label>
+                <input required type="email" id="email" name="email">
+
+                <br><br>
+
+                <input type="checkbox" id="eerste_gesprek" name="eerste_gesprek" class="eerste_gesprek" value="eerste_gesprek">
+                <label>Dit is mijn eerste gesprek</label>
+                
+                
+                <br><br>
+
+                <label>Extra informatie die je wenst mee te delen (klachten, zorgen ...)</label>
+                <br>
+                <textarea optional maxlength="500" rows="5" id="extra_info" name="extra_info"></textarea>
+
+                <br><br>
+
+                <input id="submit_button" class="submit_button" type="submit" value="Nu Boeken">
+            {% else %}
+                <h1 class="center">Er zijn momenteel geen beschikbare dagen.</h1>
+            {% endif %}
+                
+                    
+            </form>
+            {% endif %}
+            
+        </div>
+
+        <footer>
+            <p class="contact">Contact: <a href="mailto:psyamberdevuyst@gmail.com">psyamberdevuyst@gmail.com</a></p>
+            <p class="credits">Website made by Silas De Vuyst</p>
+          </footer>
+    </div>
+    <script>
+        
+        $(document).ready(function() {
+
+            $(function() {
+                // Make right dates selectable
+                var daysSet = "{{daysSet}}";
+                
+                // clean up date
+                var cleanSet = daysSet.replace(/[^0-9\/,]/gi, '');
+                dayArr = cleanSet.split(',');
+                console.log(dayArr)
+
+                // add dates to allowed 
+                var dates_allowed = {}
+                for (let i=0; i<dayArr.length; i++) {
+                    // DD/MM/YYYY --> YYYY-MM-DD
+                    var day = dayArr[i].replace(/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/gi, '$3-$2-$1'); 
+                    dates_allowed[day] = 1;
+                }
+                console.log(dates_allowed)
+
+                $('#datepicker').datepicker({
+
+                    minDate: 1,
+                    
+                    // called for every date before it is displayed
+                    beforeShowDay: function(date) {
+        
+                        // prepend values lower than 10 with 0
+                        function addZero(no) {
+                            if (no < 10){
+                            return "0" + no;
+                            }  else {
+                            return no; 
+                            }
+                        }
+                            
+                        var date_str = [
+                            addZero(date.getFullYear()),
+                            addZero(date.getMonth() + 1),
+                            addZero(date.getDate())      
+                        ].join('-');
+
+                        if (dates_allowed[date_str]) {
+                            return [true, 'good_date', 'Deze datum is selecteerbaar'];
+                        } else {
+                            return [false, 'bad_date', 'Deze datum is NIET selecteerbaar'];
+                        }
+                    }
+
+                });
+                
+                // Date has been selected, show available timeslots
+                $("#datepicker").on("change",function(){
+
+                    // DD/MM/YYYY --> YYYY/MM/DD
+                    var selected = $(this).val().replace(/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/gi, '$3-$1-$2');
+                    // remove previously loaded timeslots
+                    $("#timeslots").find('option').remove()
+
+                    // Default choice
+                    $("#timeslots").append(`<option value="" selected disabled>
+                                       Kies een tijdslot
+                                  </option>`);
+
+                    $.getJSON(`/timeslots/${selected}`,
+                        function(data){
+                            // data heeft alle beschikbare timeslots van de gekozen dag
+                            // enable de dropdown en populate
+                            $("#timeslots").prop('disabled', false);
+                            for (var i=0; i<data.length; i++) {
+                                $("#timeslots").append(
+                                    `<option value="${data[i].pk}">
+                                        ${data[i].fields.start.slice(0, 5)} - ${data[i].fields.end.slice(0, 5)}
+                                    </option>`);
+                            }
+                    });  
+                });
+
+                // https://stackoverflow.com/questions/1865091/jquery-datepicker-language
+                // Zet datepicke in nederlands
+                //$.datepicker.regional['nl'] = {clearText: 'Effacer', clearStatus: '',
+                //    closeText: 'sluiten', closeStatus: 'Onveranderd sluiten ',
+                //    prevText: 'vorige', prevStatus: 'Zie de vorige maand',
+                //    nextText: 'volgende', nextStatus: 'Zie de volgende maand',
+                //    currentText: 'Huidige', currentStatus: 'Bekijk de huidige maand',
+                //    monthNames: ['januari','februari','maart','april','mei','juni',
+                //    'juli','augustus','september','oktober','november','december'],
+                //    monthNamesShort: ['jan','feb','mrt','apr','mei','jun',
+                //    'jul','aug','sep','okt','nov','dec'],
+                //    monthStatus: 'Bekijk een andere maand', yearStatus: 'Bekijk nog een jaar',
+                //    weekHeader: 'Sm', weekStatus: '',
+                //    dayNames: ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'],
+                //    dayNamesShort: ['zo', 'ma','di','wo','do','vr','za'],
+                //    dayNamesMin: ['zo', 'ma','di','wo','do','vr','za'],
+                //    dayStatus: 'Gebruik DD als de eerste dag van de week', dateStatus: 'Kies DD, MM d',
+                //    dateFormat: 'dd/mm/yy', firstDay: 1, 
+                //    initStatus: 'Kies een datum', isRTL: false};
+                //
+                //$.datepicker.setDefaults($.datepicker.regional['nl']);
+
+            });
+            
+            // Wanneer gebruiker een afspraak boekt, toon 'aan het boeken' ipv 'boek nu'
+            // Laadt soms traag door mail
+            $("#submit_button").click(function(){
+                console.log('clicked')
+                $("#submit_button").val('Aan het boeken...');
+            });
+
+        });
+    
+      </script>
+  </body>
+  
+</html>

@@ -1,0 +1,185 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{% static 'images/favicon_light.ico' %}" id="light-scheme-icon">
+    <link rel="icon" href="{% static 'images/favicon_dark.ico' %}" id="dark-scheme-icon">
+    
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    
+    <title>Amber De Vuyst</title>
+
+  </head>
+  <body>
+
+    <!-- Voor Desktop -->
+    <header id="desktopheader">
+      <nav id="desktopnav" class="desktopnav">
+        <ul class="menu">
+          <li><a id="over_mij_header" href="#Over_Mij" class="sliding-middle-out">Over mij</a></li>
+          <li><a id="mijn_filosofie_header" href="#Mijn_filosofie" class="sliding-middle-out">Mijn filosofie</a></li>
+          <li><a id="aanbod_header" href="#Aanbod" class="sliding-middle-out">Aanbod</a></li>
+          <li><a id="over_online_header" href="#Over_online" class="sliding-middle-out">Over online</a></li>
+          <li><a href="/appointment" class="sliding-middle-out">Boek een Afspraak</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="mobileheader">
+      <nav id="navbar" class="navigation" role="navigation">
+        <input id="toggle1" type="checkbox" />
+        <label class="hamburger1" for="toggle1">
+          <div class="top"></div>
+          <div class="meat"></div>
+          <div class="bottom"></div>
+        </label>
+      
+        <nav class="menu1">
+          <a onclick="mobileHeaderClicked()" class="link1" href="#Over_Mij"><div class="sliding-middle-out">Over mij</div></a>
+          <a onclick="mobileHeaderClicked()" class="link1" href="#Mijn_filosofie"><div class="sliding-middle-out">Mijn filosofie</div></a>
+          <a onclick="mobileHeaderClicked()" class="link1" href="#Aanbod"><div class="sliding-middle-out">Aanbod</div></a>
+          <a onclick="mobileHeaderClicked()" class="link1" href="#Over_online"><div class="sliding-middle-out">Over online</div></a>
+          <a onclick="mobileHeaderClicked()" class="link1" href="/appointment"><div class="sliding-middle-out">Boek een Afspraak</div></a>
+        </nav>
+      </nav>
+    </section>
+    
+    <div id="parallax-hoofd">
+      
+      <section>
+          <div class="parallax-one">
+            
+            <h2 id="main-text">Amber De Vuyst - Klinisch Psychologe</h2>
+            <a href="/appointment" class="ghost_button">Boek een Afspraak</a>
+          </div>
+      </section>
+      
+      <section id="Intro">
+        <div class="block">
+          <blockquote class="blockquote"><p id="quote"></p><p id="quote_author"></p></blockquote>
+        </div>
+      </section>
+      
+      <section id="Over_Mij">
+        <div class="parallax-two">
+          <h2 id="over_mij_h2">Over mij</h2>
+        </div>
+      </section>
+      
+      <section>
+        <div class="block">
+          <img id="portret" src="{% static 'images/portret.jpg' %}" alt="portret">
+          <p>
+            <span class="first-character om">M</span>ijn naam is Amber De Vuyst en ik ben afgestudeerd als master in de klinische psychologie aan de universiteit van Gent. Naast mijn studies was ik ook betrokken bij extracurriculaire activiteiten zoals onderzoek en het opzetten van sessies omtrent mentaal welzijn voor studenten aan de UGent.
+            Wat psychotherapeutische stroming betreft, ben ik vooral thuis in de psychoanalyse en existentiële psychologie.
+            Deze invalshoeken ontfermen zich vooral over de diepere analyse van mentale uitingen en hebben als doel “dieper te graven”
+            en op die manier meer inzicht te verwerven in de inherente complexiteit van de mens in zijn omgeving.
+            Vanuit de overtuiging dat iedereen (soms op een pijnlijke manier) geconfronteerd wordt met existentiële thema's
+            (bv. de dood, seksualiteit, zingeving, …), stel ik mij de vraag hoe we een zo comfortabel mogelijke verhouding kunnen aannemen ten opzichte van deze thema's.
+            Het is voor mij prioritair om voldoende op de hoogte te blijven van theoretische en praktische ontwikkelingen in de psychologie.
+            Onder het motto van 'Eeuwig bijleren' spendeer ik een groot deel van mijn tijd aan het lezen van wetenschappelijke artikelen en boeken die aansluiten bij mijn praktijk. 
+            Hiernaast volg ik ook regelmatig bijscholingen. Zo volgde ik reeds de cursussen 
+            'Het pad naar geluk, wat Chinese filosofie ons kan leren over het goede leven', 'positieve psychologie', en 'stress management'.
+            Ook ben ik momenteel bezig met een extra opleiding tot yoga-leerkracht met focus op traumaverwerking,
+            dit met als doel zo veel mogelijk holistisch te werken en de integratie tussen lichaam en geest zo veel mogelijk te bevorderen.
+          </p>
+        </div>
+      </section>
+      
+      <section id="Mijn_filosofie">
+        <div class="parallax-three">
+          <h2>Mijn filosofie</h2>
+        </div>
+      </section>
+      
+      <section>
+        <div class="block">
+          <p>
+            <span class="first-character mf">S</span>oms blijven zaken zich opstapelen tot je op een punt komt waar je geen uitweg meer ziet. In andere gevallen heeft een enkele abrupte gebeurtenis hetzelfde effect. Graag sta ik jou bij als 'compagnon de route' (reisgezel) in een onzekere tijd waarbij er ruimte wordt gemaakt voor verwerking, zelfexploratie en oplossingsgericht denken. Uitgaand vanuit het principe dat iedereen een ander soort afstemming nodig heeft, werk ik uiterst individueel en wordt telkens opnieuw de vraag gesteld wat jij wenst, wat jij nodig hebt en wat jou effectief vooruit helpt.
+            Mijn psychotherapeutische oriëntatie zou ik beschrijven als integratief. Ik zie het combineren van verschillende benaderingen als een zekere verrijking; zo wordt er analyserend en in de diepte gewerkt zoals binnen de psychoanalyse, maar gaan we ook concreet aan de slag met oefeningen en handvaten, wat meer eigen is aan een oplossingsgerichte en gedragstherapeutische invalshoek. Ook tracht ik rekening te houden met de bredere context, zoals gezinssamenstelling, dynamieken binnen relaties, werkomgeving en zelfs de bredere maatschappij.   
+          </p>
+        </div>
+      </section>
+
+      <section id="Aanbod">
+        <div class="parallax-four">
+          <h2>Aanbod</h2>
+        </div>
+      </section>
+      
+      <section>
+        <div class="block">
+          <h4 class="tussentitel"><span class="first-character tt">0</span>nline individuele therapie</h4>
+          <p>
+            Een eerste mogelijkheid om jou bij te staan is online individuele therapie.
+            Bij deze werkvorm ontmoeten we elkaar in een beveiligde online omgeving en vindt er eerst en vooral een kennismakingsgesprek (60 minuten) plaats.
+            Dit gesprek heeft vooral tot doel om uit te zoeken of er een 'werkbare klik' is, wat in grove lijnen de zaken zijn waar je aan wenst te werken en hoe we concreet te werk kunnen gaan.
+            Dit gesprek is dus heel laagdrempelig en verkennend van aard. Het tarief voor dit kennismakingsgesprek is 60 euro.
+          </p>
+          <p>
+            In eventuele verdere sessies (45 minuten) gaan we dieper in op de zaken waar je op vastloopt en die enig lijden met zich meebrengen. 
+            Er vindt een constante persoonlijke afstemming plaats en alles verloopt dus volgens jouw behoeftes en jouw tempo. Het tarief van een vervolggesprek is 45 euro.
+          </p>
+          <p>
+            In sommige gevallen werk ik ook met ondersteunend materiaal, zoals vragenlijsten, kunstobjecten, muziek… Dit is echter alleen wanneer ik het gevoel heb dat jij hier persoonlijk baat bij hebt, of jij alternatieve therapeutische media wenst te exploreren.
+            De uurregeling en frequentie van deze sessies wordt telkens in samenspraak beslist.
+          </p>
+
+          <br><p class="line-break margin-top-10"></p><br>
+
+          <h4 class="tussentitel"><span class="first-character tt">0</span>nline psycho-educatieve groepssessies</h4>
+          <p>
+            Een tweede werkwijze die ik hanteer zijn de psycho-educatieve groepssessies. 
+            In deze sessies zijn we met maximum 6 personen aanwezig en gaan we dieper in op een bepaald thema.
+            De sessies zijn eenmalig en duren elk anderhalf uur. 
+            Elke sessie dient een tweeledig doel: ten eerste wordt de mogelijkheid geboden om te 'ventileren' bij peers. 
+            Vanuit het idee dat men vaak veel steun vindt bij personen die met gelijkaardige zaken worstelen, bieden deze sessies een professioneel en veilig klimaat waar het mogelijk is allerlei zaken te delen (binnen jouw grenzen uiteraard). 
+            Ten tweede vindt er ook enige psycho-educatieve duiding plaats. Dit wilt zeggen dat ik enkele theoretische concepten en praktische tips deel met betrekking tot het thema van de sessie. 
+            Deze informatie is steeds laagdrempelig, wordt in de sessie verder besproken en geeft ook duidelijke handvaten om sommige zaken toe te passen in jouw eigen leven.
+            Aangezien deze sessies nog maar net worden opgestart, zou het kunnen dat sommige sessies niet kunnen doorgaan gezien er te weinig inschrijvingen zijn. In dit geval bestaat er altijd het alternatief van een individuele sessie.
+            Thema's van de psycho-educatieve groepssessies
+          </p>
+          <ul class="opsomming">
+            <li>Omgaan met stress</li>
+            <li>Omgaan met verlieservaringen (overlijden, relatiebreuk, jobontslag,…)</li>
+            <li>Omgaan met veranderende levensfasen</li>
+            <li>Zingeving</li>
+          </ul>
+          <p>Indien een thema je aanspreekt, laat dit gerust weten via e-mail en dan kijken we samen met eventuele andere geïnteresseerden wanneer de sessie kan ingepland worden. Het tarief van deze groepssessie is 30 euro.</p>
+      </section>
+
+      <section id="Over_online">
+        <div class="parallax-five">
+          <h2>Over online</h2>
+        </div>
+      </section>
+      
+      <section>
+        <div class="block">
+          <p>
+            <span class="first-character ww">H</span>et is voor mij prioritair een constante afstemming te creëren waarbij ik zeer individueel te werk ga. Hierbij houd ik met andere woorden steeds rekening met jouw noden en hulpvraag en tracht ik therapeutische tools in te zetten die aansluiten bij jou als persoon. Er vindt een continue wisselwerking plaats, waar er uiteraard ook ruimte is voor feedback en eventuele aanpassingen. Binnen de rubriek <a href="#Aanbod" class="hyperlink">Aanbod</a> vind je terug wat de mogelijkheden zijn en hoe ik hierbinnen specifiek te werk ga.
+            Mijn diensten situeren zich volledig online, dit is bewust zo gekozen omwille van meerdere redenen:
+          </p>
+          <ul class="opsomming">
+            <li>Laagdrempeligheid. Een grote reden van mijn online werkwijze is dat ik een zo laagdrempelig mogelijke omgeving wens te creëren. Aangezien het bezoeken van een psycholoog voor velen een delicate stap is, wil ik deze toenadering zo vlot mogelijk laten verlopen. Door de online therapie-omgeving hoeft men zich niet fysiek te verplaatsen en valt er vaak al een stressfactor weg.</li>
+            <li>Flexibiliteit. De online omgeving laat een zekere extra afstemming en flexibiliteit toe. Het tijdstip, de locatie en de frequentie van de therapie worden allemaal zo flexibel mogelijk afgestemd teneinde zo veel mogelijk tegemoet te komen aan jouw behoeftes.</li>
+            <li>Openheid. Uit mijn vroegere ervaringen met online therapie merk ik dat cliënten zich vaak sneller openstellen, dit vanuit het feit dat men therapie volgt vanuit een bekende omgeving en men zich dus niet moet aanpassen aan nieuwe omgevingen die vaak klinisch aanvoelen.</li>
+            <li>Persoonlijke affiniteit. Hoewel “het ontbreken van persoonlijk contact” vaak als contra-argument wordt gebruikt met betrekking tot online therapie, spreekt mijn ervaring dit tegen. Online therapie is een privaat en professioneel gebeuren, waar alle werkzame factoren die eigen zijn aan therapie ook van toepassing zijn.</li>
+          </ul>
+      </section>
+      
+        
+    </div>
+    <footer>
+      <p class="contact">Contact: <a href="mailto:psyamberdevuyst@gmail.com">psyamberdevuyst@gmail.com</a></p>
+      <p class="credits">Website made by Silas De Vuyst</p>
+    </footer>
+
+    <script src="{% static 'script.js' %}"></script>
+  </body>
+</html>
