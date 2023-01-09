@@ -154,23 +154,31 @@ html {
 #parallax-hoofd .parallax-one {
   padding-top: 250px !important;
   padding-bottom: 300px !important; 
+  max-width: 100%;
   background-image: url('/static/images/index.jpeg'); 
 }
 
 #parallax-hoofd .parallax-two {
-  background-image: url('/static/images/overmij.jpeg')
+  max-width: 100%;
+  background-image: url('/static/images/overmij.jpeg');
 }
 
 #parallax-hoofd .parallax-three {
-  width: 100%; background-image: url('/static/images/werkwijze.jpeg')
+  max-width: 100%;
+  width: 100%; 
+  background-image: url('/static/images/werkwijze.jpeg');
 }
 
 #parallax-hoofd .parallax-four {
-  width: 100%; background-image: url('/static/images/aanbod.jpeg')
+  max-width: 100%;
+  width: 100%; 
+  background-image: url('/static/images/aanbod.jpeg');
 }
 
 #parallax-hoofd .parallax-five {
-  width: 100%; background-image: url('/static/images/online.jpeg')
+  max-width: 100%;
+  width: 100%; 
+  background-image: url('/static/images/online.jpeg')
 }
 
 /* Extras */
