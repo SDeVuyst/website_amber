@@ -5,6 +5,7 @@ html {
   width: 100%;
   margin: 0;
   scroll-behavior: smooth;
+  overflow: hidden !important;
 }
 
 /* inspired by https://codepen.io/designbyremedy/pen/RwGwvy */
