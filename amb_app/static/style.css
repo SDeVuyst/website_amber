@@ -2,7 +2,6 @@
 body,
 html {
   height: 100%;
-  overflow-x: hidden;
   width: 100%;
   margin: 0;
   scroll-behavior: smooth;
@@ -187,6 +186,10 @@ html {
 /* Media Queries */
 /**************************/
 @media screen and (max-width: 767px) {
+  html, body{
+    overflow-x: hidden !important;
+  }
+
   #parallax-hoofd .block {
     padding: 30px 15px;
     width:290px;
@@ -251,6 +254,10 @@ html {
 }
 
 @media screen and (max-width: 767px) and (min-width: 959px) {
+  html, body{
+    overflow-x: hidden !important;
+  }
+
   #parallax-hoofd .block {
     padding: 30px; 
     width:420px;
@@ -288,6 +295,10 @@ html {
 }
 
 @media screen and (max-width: 959px) and (min-width: 768px) {
+  html, body{
+    overflow-x: hidden !important;
+  }
+  
   #parallax-hoofd .block {
     padding: 40px; 
     width:620px;
