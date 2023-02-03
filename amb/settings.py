@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import re
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -91,15 +92,13 @@ WSGI_APPLICATION = 'amb.wsgi.application'
 #     }
 # }
 
+url = os.getenv('DATABASE_URL')
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('db'),
-        'USER': os.getenv('db_user'),
-        'PASSWORD': os.getenv('db_password'),
-        'HOST': os.getenv('db_host'),
-        'PORT':  os.getenv('db_port')
-    }
+    'default': dj_database_url.config(
+        conn_max_age=600,
+        conn_health_checks=True,
+    ),
 }
 
 
