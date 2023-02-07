@@ -388,7 +388,7 @@ html {
   border-color: rgba(255, 255, 255, 0.7);
 }
 
-.credits {
+.credits, .credits a {
   text-align: center;
   font-family:'Helvetica', sans-serif;
   font-size: 13px;
