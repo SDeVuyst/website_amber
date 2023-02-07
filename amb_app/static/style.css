@@ -411,6 +411,10 @@ html {
   text-decoration: underline;
 }
 
+.credits a {
+  text-decoration: underline;
+}
+
 /* STYLING THE HEADER */
 .desktopnav {
   position: relative;
