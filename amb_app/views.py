@@ -8,6 +8,7 @@ from django.template.loader import get_template
 from datetime import datetime
 
 import re
+import sys
 
 from .models import TimeSlot, Day, Patient
 
@@ -115,7 +116,7 @@ def send_mail(send_to, first_name, last_name, date, start, end):
             
             EmailObject.content_subtype = "html"
             EmailObject.send()
+            
     except Exception as e:
-        print('Mailing error')
-        print(e)
+        print(e, file=sys.stderr)
         return
