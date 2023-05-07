@@ -234,14 +234,17 @@ html {
     font-size: 35px !important;
   }
 
-  #portret {
+  #portret, #slider-wrapper {
     float: none !important; 
     display: block; 
     margin: 0 auto !important; 
-    padding: 0 0 !important; 
+    padding: 10px; 
     object-fit: cover; 
     text-align: center;
+    align-items: center;
+    justify-content: center;
   }
+
   
   #parallax-hoofd p, #parallax-hoofd ul li {
     font-size: 20px !important;
@@ -251,6 +254,8 @@ html {
     -ms-hyphens: auto;
     hyphens: auto;
   }
+
+
 }
 
 @media screen and (max-width: 767px) and (min-width: 959px) {
@@ -831,4 +836,37 @@ option {
   height: 45vh;
   margin-left: 3%;
   margin-top: 10px;
+}
+
+/* https://codepen.io/rkrc/pen/LEgKww */
+/* Carousel */
+
+.slider {
+	position: relative;
+  float: right;
+  height: 45vh !important;
+}
+
+.slide {
+	text-align: center;
+	display: none;
+	position: relative;
+	height: 45vh !important;
+}
+
+.active-slide {
+  display: block;
+}
+
+
+#slider-wrapper {
+  float: right;
+  margin-left: 3%;
+  margin-top: 10px;
+}
+
+.container > img {
+  object-fit: contain;
+  max-height: 45vh;
+  height: auto;
 }

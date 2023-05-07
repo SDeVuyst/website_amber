@@ -21,8 +21,8 @@ window.addEventListener("scroll", function () {
     // Voor juiste sectie aan te duiden in display
     var over_mij_offset = document.getElementById("Over_Mij").getBoundingClientRect().top;
     var filosofie_offset = document.getElementById("Mijn_filosofie").getBoundingClientRect().top;
-    var aanbod_offset = document.getElementById("Aanbod").getBoundingClientRect().top;
-    var over_online_offset = document.getElementById("Over_online").getBoundingClientRect().top;
+    var aanbod_offset = document.getElementById("praktijk").getBoundingClientRect().top;
+    var over_online_offset = document.getElementById("over_online").getBoundingClientRect().top;
     var sticky_trigger_element = document.getElementById("main-text").getBoundingClientRect().top;
 
     var over_mij_header = document.getElementById("over_mij_header");

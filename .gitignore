@@ -1,1 +1,6 @@
 venv/
+amb_app/migrations
+amb_app/__pycache__
+staticfiles
+
+amb/__pycache__/*
