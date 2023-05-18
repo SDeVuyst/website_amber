@@ -171,10 +171,6 @@ html {
   background-image: url('/static/images/aanbod.jpeg');
 }
 
-#parallax-hoofd .parallax-five {
-  background-image: url('/static/images/online.jpeg')
-}
-
 /* Extras */
 /**************************/
 #parallax-hoofd .line-break {

@@ -21,42 +21,35 @@ window.addEventListener("scroll", function () {
     // Voor juiste sectie aan te duiden in display
     var over_mij_offset = document.getElementById("Over_Mij").getBoundingClientRect().top;
     var filosofie_offset = document.getElementById("Mijn_filosofie").getBoundingClientRect().top;
-    var aanbod_offset = document.getElementById("praktijk").getBoundingClientRect().top;
-    var over_online_offset = document.getElementById("over_online").getBoundingClientRect().top;
+    var aanbod_offset = document.getElementById("Aanbod").getBoundingClientRect().top;
     var sticky_trigger_element = document.getElementById("main-text").getBoundingClientRect().top;
 
     var over_mij_header = document.getElementById("over_mij_header");
     var filosofie_header = document.getElementById("mijn_filosofie_header");
     var aanbod_header = document.getElementById("aanbod_header");
-    var over_online_header = document.getElementById("over_online_header");
     
     let desktop_header = document.getElementById("desktopheader");
 
-    if ( over_online_offset < 25 ) { 
-      desktop_header.classList.add("sticky");
-      addViewing([over_online_header]);
-      removeViewing([aanbod_header, filosofie_header, over_mij_header])
-
-    } else if ( aanbod_offset < 25 ) {
+    if ( aanbod_offset < 25 ) {
       desktop_header.classList.add("sticky");
       addViewing([aanbod_header])
-      removeViewing([filosofie_header, over_mij_header, over_online_header])
+      removeViewing([filosofie_header, over_mij_header])
 
     } else if ( filosofie_offset < 25 ) {
       desktop_header.classList.add("sticky");
       addViewing([filosofie_header])
-      removeViewing([over_mij_header, aanbod_header, over_online_header])
+      removeViewing([over_mij_header, aanbod_header])
 
     } else if ( over_mij_offset < 25 ) {
       desktop_header.classList.add("sticky");
       addViewing([over_mij_header])
-      removeViewing([filosofie_header, aanbod_header, over_online_header])
+      removeViewing([filosofie_header, aanbod_header])
   
     } else if ( sticky_trigger_element < 25 ) {
       desktop_header.classList.add("sticky");
 
     } else {
-      removeViewing([over_mij_header, filosofie_header, aanbod_header, over_online_header])
+      removeViewing([over_mij_header, filosofie_header, aanbod_header])
       desktop_header.classList.remove("sticky");
 
     }
